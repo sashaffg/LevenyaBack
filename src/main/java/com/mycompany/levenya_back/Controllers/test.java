@@ -5,7 +5,15 @@
  */
 package com.mycompany.levenya_back.Controllers;
 
+import com.mycompany.levenya_back.models.Email;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,19 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
  * @author sasha
  */
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("")
 public class test {
 
-    @GetMapping
-    public String showStatus() {
-        return "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "	<title></title>\n"
-                + "</head>\n"
-                + "<body>\n"
-                + "<H1>HELLO</H1>\n"
-                + "</body>\n"
-                + "</html>";
+    @PostMapping("/test")
+    public String showStatus(@RequestBody Email mail) {
+            System.out.println(mail);
+            String res = mail + "JOPA";
+            System.out.println(res);
+            return res;
+        }
+
+        @GetMapping("/test")
+        public ResponseEntity<Map> GET
+        
+            () {
+        Map<Object, Object> response = new HashMap<>();
+            response.put("msg", "HUI");
+            return ResponseEntity.ok(response);
+        }
     }
-}
